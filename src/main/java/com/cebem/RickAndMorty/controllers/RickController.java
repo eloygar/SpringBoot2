@@ -1,5 +1,9 @@
 package com.cebem.RickAndMorty.controllers;
 
+import java.text.MessageFormat;
+
+import org.apache.el.util.MessageFactory;
+import org.apache.logging.log4j.message.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,12 +34,13 @@ public class RickController {
     }
 
     @GetMapping("/add")
-    //http://localhost:8080/add?n1=2&n2=5
+    // http://localhost:8080/add?n1=2&n2=5
     public String add(@RequestParam String n1, @RequestParam String n2) {
         // // es un palindromo
         // StringBuilder sb = new StringBuilder(word);
         float s = Float.parseFloat(n1) + Float.parseFloat(n2);
-        return s + "";
+        Object params[] = { n1, n2, s };
+        return MessageFormat.format("la suma de {0} mas {1} es igual a {2}", params);
     }
 
 }
