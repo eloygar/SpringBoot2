@@ -6,6 +6,7 @@ import org.apache.el.util.MessageFactory;
 import org.apache.logging.log4j.message.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,5 +43,11 @@ public class RickController {
         Object params[] = { n1, n2, s };
         return MessageFormat.format("la suma de {0} mas {1} es igual a {2}", params);
     }
+    //guardar en el disco duro
+    // @PostMapping("saveOnDisc")
+    // public String saveOnDisck(){
+
+    // }
+
 
 }
