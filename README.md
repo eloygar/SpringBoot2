@@ -10,8 +10,8 @@ crear la clase controller donde implementar metodos de tipo get y post crear la 
 ## To do
 
 - [x] Crear estructura basica 
-- [] Añadir metodos utiles
-- [] implementar base de datos
+- [ ] Añadir metodos utiles
+- [ ] implementar base de datos
 - 
 ---
 > Este proyecto es público y cualquiera puede contribuir para ayudar en el mismo con **cualquier** tipo de aporte interesante
