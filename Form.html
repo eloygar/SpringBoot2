@@ -6,17 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1>Inserta una frase</h1>
-    <form action="http://localhost:8080/saveOnDisc" method="POST">
-        Nombre<input type="text" name="text" />
+    <form action="http://localhost:8080/saveOnDisk" method="post">
+        <label for="name">Nombre<input type="text" name="name" placeholder="nombre del producto"></label>
 
-        <br />
-        Precio <input type="text" name="text" />
-        <br>
-        <button>Guardar tu frase</button>
+        <label for="price">Precio:<input type="text" name="price" placeholder="Precio del producto"></label>
+
+        <button type="submit">Enviar al servidor</button>
     </form>
 </body>
 

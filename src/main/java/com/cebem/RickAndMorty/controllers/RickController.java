@@ -1,9 +1,14 @@
 package com.cebem.RickAndMorty.controllers;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.MessageFormat;
+import java.util.Map;
 
 import org.apache.el.util.MessageFactory;
 import org.apache.logging.log4j.message.Message;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,11 +48,29 @@ public class RickController {
         Object params[] = { n1, n2, s };
         return MessageFormat.format("la suma de {0} mas {1} es igual a {2}", params);
     }
-    //guardar en el disco duro
-    // @PostMapping("saveOnDisc")
-    // public String saveOnDisck(){
+    // guardar en el disco duro
 
-    // }
+    @PostMapping("/saveOnDisk")
+    public String saveOnDisk(@RequestParam Map<String, String> body) {
+        String name = body.get("name");
+        String price = body.get("price");
+        String info = name + "" + price + "/n";
 
+        try {
+            Utils.writeOnDisk(name, info);
+        } catch (IOException e) {
+            return "Error al intentar escribir en el fichero";
+        }
+
+        return "Gracias por enviar el formulario, los datos se han guardado en el servidor";
+
+    }
+
+    @DeleteMapping("/removeFile")
+    public String removeFile() {
+        boolean result = Utils.remove("datos.txt");
+        return result ? "borrado corecto" : "borrado incorrecto";
+
+    }
 
 }
