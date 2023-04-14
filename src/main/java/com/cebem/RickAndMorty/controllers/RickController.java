@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.apache.el.util.MessageFactory;
 import org.apache.logging.log4j.message.Message;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,7 +58,7 @@ public class RickController {
         String info = name + "" + price + "/n";
 
         try {
-            Utils.writeOnDisk(name, info);
+            Utils.writeOnDisk("datos.txt", info);
         } catch (IOException e) {
             return "Error al intentar escribir en el fichero";
         }
@@ -71,6 +72,6 @@ public class RickController {
         boolean result = Utils.remove("datos.txt");
         return result ? "borrado corecto" : "borrado incorrecto";
 
-    }
+    } 
 
 }
