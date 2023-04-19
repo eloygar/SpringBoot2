@@ -14,7 +14,8 @@
             border: 1px solid black;
             border-radius: 5px;
         }
-        #red{
+
+        #red {
             background-color: red;
             color: white;
         }
@@ -33,9 +34,11 @@
 
     <button id="red">Eliminar fichero del servidor</button>
     <script>
-    document.getElementById("red").addEventListener("click",handleDelete)
-        function handleDelete(){
-            alert("sos boluditto")
+        document.getElementById("red").addEventListener("click", handleDelete)
+        function handleDelete() {
+            // alert("sos boluditto")
+            fetch("http://localhost:8080/removeFile",{method: "DELETE"})
+            .then(response => alert ("el servidor respondio"))
         }
     </script>
 </body>
