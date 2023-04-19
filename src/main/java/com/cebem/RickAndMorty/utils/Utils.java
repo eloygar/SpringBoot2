@@ -37,17 +37,28 @@ public class Utils {
         StringBuilder sb = new StringBuilder();
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader(fileName)); // Abrir el archivo en modo de lectura
+            br = new BufferedReader(new FileReader(fileName)); 
             String line;
             while ((line = br.readLine()) != null) {
-                sb.append(line); // Leer cada línea del archivo y agregarla al StringBuilder
+                sb.append(line); 
             }
         } finally {
             if (br != null) {
-                br.close(); // Cerrar el BufferedReader
+                br.close(); 
             }
         }
-        return sb.toString(); // Devolver el contenido del archivo como una cadena de texto
+        return sb.toString();
+    }
+    public static float maxOfElements(float ...numeros){
+        if(numeros==null||numeros.length==0){
+            throw new NumberFormatException();
+        }
+        float elMayor =numeros[0];
+        
+        for (int i = 0; i < numeros.length; i++) {
+            if(numeros[i]>elMayor)elMayor=numeros[i];
+        }
+        return elMayor;
     }
 
     public static void emptyFile(String archivoPath) throws IOException {

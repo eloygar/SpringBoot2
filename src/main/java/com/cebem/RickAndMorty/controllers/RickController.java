@@ -3,8 +3,10 @@ package com.cebem.RickAndMorty.controllers;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Array;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +109,7 @@ public class RickController {
 
     @GetMapping("/capitalizar")
     public String capitalizar(@RequestParam String frase) {
-        String[] palabras = frase.split("\\s+");
+        String[] palabras = frase.split("\\s+"); 
         StringBuilder resultado = new StringBuilder();
         for (String palabra : palabras) {
             if (!palabra.isEmpty()) {
@@ -154,7 +156,6 @@ public class RickController {
         String[] coloresBasicos = { "negro", "azul", "marrón", "gris", "verde", "naranja", "rosa", "púrpura", "rojo",
                 "blanco", "amarillo" };
         String[] coloresAleatorios = new String[3];
-
         Random random = new Random();
 
         for (int i = 0; i < 3; i++) {
@@ -167,6 +168,17 @@ public class RickController {
         }
 
         return coloresAleatorios;
+    }
+    @GetMapping("/randomColors2")
+    public String randomColors2() {
+        String[] coloresBasicos = { "negro", "azul", "marrón", "gris", "verde", "naranja", "rosa", "púrpura", "rojo",
+        "blanco", "amarillo" };
+        ArrayList<String>color = new ArrayList<String>(Arrays.asList(coloresBasicos));
+        int random = (int) Math.floor(Math.random()*color.size());
+        String selectColor = color.remove(random);
+        String selectColor2 = color.remove(random);
+        String selectColor3 = color.remove(random);
+        return selectColor+""+selectColor2+""+selectColor3;
     }
 
     private boolean contains(String[] array, String value) {
