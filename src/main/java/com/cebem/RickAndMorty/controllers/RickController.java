@@ -178,7 +178,7 @@ public class RickController {
         String selectColor = color.remove(random);
         String selectColor2 = color.remove(random);
         String selectColor3 = color.remove(random);
-        return selectColor+""+selectColor2+""+selectColor3;
+        return selectColor+" "+selectColor2+" "+selectColor3;
     }
 
     private boolean contains(String[] array, String value) {
@@ -188,6 +188,14 @@ public class RickController {
             }
         }
         return false;
+    }
+
+    //devuelve un presonaje de rick an morty
+    // https://rickandmortyapi.com/api/character/$
+    @GetMapping("/rickandmorty/random")
+    public static String randomCharacter() {
+
+        return "";
     }
 
 }

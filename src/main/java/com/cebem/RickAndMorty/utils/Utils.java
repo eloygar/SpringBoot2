@@ -66,5 +66,8 @@ public class Utils {
         writer.print("");
         writer.close();
     }
+    public static int getRandomValue(int max){
+        return (int) Math.floor(Math.random() * max);
+    }
 
 }
