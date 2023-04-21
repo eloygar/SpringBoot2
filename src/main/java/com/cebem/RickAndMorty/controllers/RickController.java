@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cebem.RickAndMorty.models.CharacterModel;
+import com.cebem.RickAndMorty.services.RickAndMortyService;
 import com.cebem.RickAndMorty.utils.Utils;
 
 import jakarta.websocket.server.PathParam;
@@ -32,6 +34,8 @@ import jakarta.websocket.server.PathParam;
 @RestController
 @CrossOrigin(origins = "*")
 public class RickController {
+    
+
     @GetMapping("/")
     public String saluda() {
         return "bienvenido a mi api rest de RickAndMorty";
@@ -109,7 +113,7 @@ public class RickController {
 
     @GetMapping("/capitalizar")
     public String capitalizar(@RequestParam String frase) {
-        String[] palabras = frase.split("\\s+"); 
+        String[] palabras = frase.split("\\s+");
         StringBuilder resultado = new StringBuilder();
         for (String palabra : palabras) {
             if (!palabra.isEmpty()) {
@@ -169,16 +173,17 @@ public class RickController {
 
         return coloresAleatorios;
     }
+
     @GetMapping("/randomColors2")
     public String randomColors2() {
         String[] coloresBasicos = { "negro", "azul", "marrón", "gris", "verde", "naranja", "rosa", "púrpura", "rojo",
-        "blanco", "amarillo" };
-        ArrayList<String>color = new ArrayList<String>(Arrays.asList(coloresBasicos));
-        int random = (int) Math.floor(Math.random()*color.size());
+                "blanco", "amarillo" };
+        ArrayList<String> color = new ArrayList<String>(Arrays.asList(coloresBasicos));
+        int random = (int) Math.floor(Math.random() * color.size());
         String selectColor = color.remove(random);
         String selectColor2 = color.remove(random);
         String selectColor3 = color.remove(random);
-        return selectColor+" "+selectColor2+" "+selectColor3;
+        return selectColor + " " + selectColor2 + " " + selectColor3;
     }
 
     private boolean contains(String[] array, String value) {
@@ -190,12 +195,19 @@ public class RickController {
         return false;
     }
 
-    //devuelve un presonaje de rick an morty
+    // devuelve un presonaje de rick an morty
     // https://rickandmortyapi.com/api/character/$
-    @GetMapping("/rickandmorty/random")
-    public static String randomCharacter() {
 
-        return "";
+    @Autowired
+    RickAndMortyService rickAndMortyService;
+
+    @GetMapping("/rickandmorty/random")
+
+    public String randomCharacter() {
+        // RickAndMortyService service = new RickAndMortyService();
+        
+        CharacterModel characterModel = rickAndMortyService.getCharacterRandom();
+        return characterModel.name + "</br>" + "<img src='" + characterModel.image + "'/>";
     }
 
 }
