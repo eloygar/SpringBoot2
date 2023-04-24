@@ -9,5 +9,10 @@
 <body>
     
     <h1>Lista de personajes de Rick and Morty</h1>
+    <h2 th:text ="${creator}"></h2>
+    <div th:each="character : ${characters}">
+        <h4 th:text ="${character.name}"></h4>
+        <img th:src="${character.image}" alt="foto personaje">
+    </div>
 </body>
 </html>
