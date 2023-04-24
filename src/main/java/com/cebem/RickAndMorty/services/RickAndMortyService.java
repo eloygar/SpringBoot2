@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.cebem.RickAndMorty.models.CharacterModel;
+import com.cebem.RickAndMorty.models.CharactersModel;
 import com.cebem.RickAndMorty.utils.Utils;
 
 @Service
@@ -22,4 +23,10 @@ public class RickAndMortyService {
         return datos;
 
     }
+    public CharactersModel getAllCharacter(){
+        String url = "https://rickandmortyapi.com/api/character/";
+        CharactersModel datos = restTemplate.getForObject(url, CharactersModel.class);
+        return datos;
+    }
+    
 }

@@ -1,5 +1,5 @@
 package com.cebem.RickAndMorty.controllers;
-
+import org.springframework.ui.Model;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,15 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cebem.RickAndMorty.models.CharacterModel;
+import com.cebem.RickAndMorty.models.CharactersModel;
 import com.cebem.RickAndMorty.services.RickAndMortyService;
 import com.cebem.RickAndMorty.utils.Utils;
-
 import jakarta.websocket.server.PathParam;
 
 @RestController
 @CrossOrigin(origins = "*")
 public class RickController {
-    
 
     @GetMapping("/")
     public String saluda() {
@@ -205,9 +204,28 @@ public class RickController {
 
     public String randomCharacter() {
         // RickAndMortyService service = new RickAndMortyService();
-        
+
         CharacterModel characterModel = rickAndMortyService.getCharacterRandom();
         return characterModel.name + "</br>" + "<img src='" + characterModel.image + "'/>";
     }
 
+    @GetMapping("/rickandmorty/all")
+    public String characters(){
+     CharactersModel charactersModel = rickAndMortyService.getAllCharacter();
+     String html = "";
+     html+="<head>";
+     html+="<body>";
+     for(CharacterModel characterModel : charactersModel.results){
+       html += characterModel.name;
+       html += "<br/>";
+       html += "<img width='100px' src='"+characterModel.image+"'>";
+       html += "<hr/>";
+     }
+     html+="</head>";
+     html+="</body>";
+    
+
+     return html;
+    }
+  
 }
