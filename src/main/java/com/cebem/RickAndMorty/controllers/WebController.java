@@ -26,5 +26,15 @@ public class WebController {
 
         return "rickandmortyall";
     }
+    @RequestMapping("/rickandmorty/count")
+
+        public String charactersCountTemplates(Model modelo){
+            int count =rickAndMortyService.getCharacterCount();
+            modelo.addAttribute("count", count);
+            return "rickandmortycount.html";
+        }
+    
+    
+
 
 }

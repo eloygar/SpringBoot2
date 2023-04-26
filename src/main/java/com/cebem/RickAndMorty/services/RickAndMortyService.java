@@ -28,5 +28,10 @@ public class RickAndMortyService {
         CharactersModel datos = restTemplate.getForObject(url, CharactersModel.class);
         return datos;
     }
+    public int getCharacterCount(){
+        String url = "https://rickandmortyapi.com/api/character/";
+        CharactersModel datos = restTemplate.getForObject(url, CharactersModel.class);
+        return datos.info.count;
+    }
     
 }
