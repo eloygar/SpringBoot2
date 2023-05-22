@@ -1,7 +1,4 @@
 package com.cebem.RickAndMorty.models;
-
-import java.util.Date;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,25 +8,21 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-
 @Entity
-@Table(name = "meme")
+@Table(name = "game")
 
-public class MemeModel{
-
+public class GameModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private long id;
 
     private String category;
-    private String url;
     private String description;
     private String author;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private Date createdAt;
 
     public long getId() {
         return id;
@@ -47,14 +40,6 @@ public class MemeModel{
         this.category = category;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -70,17 +55,4 @@ public class MemeModel{
     public void setAuthor(String author) {
         this.author = author;
     }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
 }
-
-// ORM
-// memeModel memeninna = new memeModel();
-// memeninna.description="disaster girl";
-// memeninna.save();
